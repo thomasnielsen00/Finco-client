@@ -145,7 +145,7 @@ export default function LogIn() {
           </Button>
           <Grid container>
             <Grid item sx={{ pt: 2 }}>
-              <Link href="/register" variant="body2">
+              <Link href="#/register" variant="body2">
                 {register_text}
               </Link>
             </Grid>

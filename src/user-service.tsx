@@ -39,10 +39,6 @@ class UserService {
     return axios.get<User[]>("/users").then((response) => response.data);
   }
 
-  get() {
-    return axios.get<string>("/").then((response) => response.data);
-  }
-
   /**
    * Get user with given id.
    */

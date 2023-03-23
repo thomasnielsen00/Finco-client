@@ -8,8 +8,6 @@ import {
   Container,
   Grid,
   Card,
-  CardContent,
-  CardActions,
   Alert,
   IconButton,
   Collapse,
@@ -91,13 +89,13 @@ export default function Market() {
 
   //@ts-ignore
   const sortedCompanies = [...companies].sort((a, b) => {
-    if (sortValue == "CSV") {
+    if (sortValue === "CSV") {
       return b.calculated_value_per_share - a.calculated_value_per_share;
     }
-    if (sortValue == "LIVE") {
+    if (sortValue === "LIVE") {
       return b.currentSharePrice - a.currentSharePrice;
     }
-    if (sortValue == "DIFF") {
+    if (sortValue === "DIFF") {
       return b.calculated_difference - a.calculated_difference;
     } else {
       return companies;

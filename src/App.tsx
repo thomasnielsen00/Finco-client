@@ -15,10 +15,11 @@ import CompanyDetails from "./components/company-details";
 import Home from "./components/homepage";
 import { Portfolio } from "./components/portfolio";
 import { languageText, LanguageTextInfo } from "./language";
-// import { UserProfile, LogInNeeded } from "./components/userDetails";
 import { User } from "./user-service";
-// import adminpage from "./components/adminpage";
-// import CompanyCalculations from "./components/company-calculations";
+import CompanyCalculations from "./components/company-calculations";
+import AdminPage from "./components/adminpage";
+import { LogInNeeded } from "./components/log-in-needed";
+import { UserDetails } from "./components/user-details";
 
 export default function App() {
   const [user, setUser] = useState<User | boolean>(false);
@@ -38,18 +39,13 @@ export default function App() {
             {/* @ts-ignore */}
             <Route exact path="/" element={<Home />} />
             {/* Må kanskje være :user_id, men funker ikke ends mtp teststien i finco-components */}
-            {/* <Route exact path="/users/:user_id" element={<UserProfile />} /> */}
-            {/* @ts-ignore */}
-            <Route exact path="/portfolio/:user_id" element={<Portfolio />} />
+            <Route path="/users/:user_id" element={<UserDetails />} />
+            <Route path="/portfolio/:user_id" element={<Portfolio />} />
             {/* This component is rendered when a user tries to open a portfolio but is not logged in */}
-            {/* <Route exact path="/log_in_needed" component={LogInNeeded} /> */}
-            {/* @ts-ignore */}
-            <Route exact path="/log_in" element={<LogIn />} />
-            {/* @ts-ignore */}
-            <Route exact path="/register" element={<Register />} />
-            {/* @ts-ignore */}
-            {/* <Route exact path="/adminpage" component={adminpage} /> */}
-            {/* @ts-ignore */}
+            <Route path="/log_in_needed" element={<LogInNeeded />} />
+            <Route path="/log_in" element={<LogIn />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/adminpage" element={<AdminPage />} />
             <Route path="/market" element={<Market />} />
             <Route
               //@ts-ignore
@@ -57,11 +53,12 @@ export default function App() {
               path="/company/:company_id"
               element={<CompanyDetails />}
             />
-            {/* <Route
+            <Route
+              //@ts-ignore
               exact
               path="/companycalculations/:company_id"
-              component={CompanyCalculations}
-            /> */}
+              element={<CompanyCalculations />}
+            />
           </Routes>
         </UserContext.Provider>
       </LanguageContext.Provider>

@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from "react";
-import { createHashHistory } from "history";
 import {
   Button,
   CssBaseline,
@@ -89,7 +88,7 @@ export default function Register() {
               .then((user) => {
                 setUser(user);
               })
-              .then(() => navigate("#/users/" + user_id))
+              .then(() => navigate(`/users/${user_id}`))
               .catch((error) => {
                 console.error(error.message);
               });

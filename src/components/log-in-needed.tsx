@@ -43,7 +43,7 @@ export function LogInNeeded() {
                   fontSize: "16px",
                   mb: 2,
                 }}
-                href={"/log_in"}
+                href={"#/log_in"}
               >
                 {log_in_here}
               </Button>
@@ -56,7 +56,7 @@ export function LogInNeeded() {
                   fontSize: "16px",
                   m: 2,
                 }}
-                href={"/register"}
+                href={"#/register"}
               >
                 {create_a_user}
               </Button>

@@ -61,10 +61,10 @@ const NavBar = () => {
 
   const menuItems = (
     <List>
-      <ListItemButton key={marked} href={"/market"}>
+      <ListItemButton key={marked} href={"#/market"}>
         <ListItemText primary={marked} />
       </ListItemButton>
-      <ListItemButton key={portfolio} href={"/portifolio"}>
+      <ListItemButton key={portfolio} href={"#/portifolio"}>
         <ListItemText primary={portfolio} />
       </ListItemButton>
       <ListItemButton key={about} href={"https://www.finco.no/"}>
@@ -72,12 +72,12 @@ const NavBar = () => {
       </ListItemButton>
       <ListItemButton
         key={log_in}
-        href={user ? "/users/" + user.user_id : "/log_in"}
+        href={user ? "#/users/" + user.user_id : "#/log_in"}
       >
         <ListItemText primary={user ? profile : log_in} />
       </ListItemButton>
       {user.admin && (
-        <ListItemButton key={admin} href="/adminpage">
+        <ListItemButton key={admin} href="#/adminpage">
           <ListItemText primary={admin} />
         </ListItemButton>
       )}

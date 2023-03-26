@@ -35,7 +35,15 @@ export default function CompanyDetails() {
   const { language } = useContext(LanguageContext);
   //@ts-ignore
   const { user } = useContext(UserContext);
-  const { calculated_stock_value, live_stock_value, difference } = language;
+  const {
+    calculated_stock_value,
+    live_stock_value,
+    difference,
+    key_figures,
+    buy_stock,
+    calculated_return,
+    buy,
+  } = language;
 
   const [company, setCompany] = useState<Company>();
   const [openAlert, setOpenAlert] = useState<boolean>(false);
@@ -116,7 +124,7 @@ export default function CompanyDetails() {
     <>
       <ThemeProvider theme={MidlertidigTheme}>
         <CssBaseline />
-        <Container maxWidth="md" sx={{ mt: 3 }}>
+        <Container maxWidth="md" sx={{ mt: 3, mb: 3 }}>
           <Collapse in={openAlert}>
             <Alert
               severity="error"
@@ -200,7 +208,7 @@ export default function CompanyDetails() {
                 </Grid>
 
                 <Grid item xs={12} sx={{ m: 2 }}>
-                  <Divider>NØKKELTALL</Divider>
+                  <Divider>{key_figures}</Divider>
                   <Box sx={{ m: 2 }}>
                     <Grid container justifyContent="space-between">
                       <Grid item xs={12} sm={3}>
@@ -221,7 +229,7 @@ export default function CompanyDetails() {
                 </Grid>
 
                 <Grid item xs={12} sx={{ m: 2 }}>
-                  <Divider>KJØP AKSJE</Divider>
+                  <Divider>{buy_stock}</Divider>
                   <Box sx={{ ml: 2, mr: 2 }}>
                     <Grid
                       container
@@ -248,7 +256,7 @@ export default function CompanyDetails() {
                       </Grid>
                       <Grid item xs={12} sm={6}>
                         <Typography align="center" variant="h6" sx={{ m: 1 }}>
-                          Kalkulert avkastning: {roi} kr
+                          {calculated_return}: {roi} kr
                         </Typography>
                       </Grid>
                       <Grid item xs={12} sm={3}>
@@ -260,7 +268,7 @@ export default function CompanyDetails() {
                           fullWidth
                           onClick={handleBuy}
                         >
-                          KJØP
+                          {buy}
                         </Button>
                       </Grid>
                     </Grid>

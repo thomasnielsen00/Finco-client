@@ -20,6 +20,7 @@ import {
   Select,
   MenuItem,
   SelectChangeEvent,
+  Divider,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
@@ -43,7 +44,7 @@ export default function Market() {
     live_stock_value,
     explore_company,
     difference,
-    watchlist,
+    calculated,
     search,
     sort_by,
     no_sort,
@@ -139,7 +140,7 @@ export default function Market() {
     <>
       <ThemeProvider theme={MidlertidigTheme}>
         <CssBaseline />
-        <Container maxWidth="lg" sx={{ mt: 3 }}>
+        <Container maxWidth="lg" sx={{ mt: 3, mb: 2 }}>
           <Collapse in={openAlert}>
             <Alert
               severity="error"
@@ -160,7 +161,6 @@ export default function Market() {
               {errorMessage}
             </Alert>
           </Collapse>
-
           <Box sx={{ mt: 2, mb: 3 }}>
             <Grid container alignItems="center" justifyContent="space-between">
               <Grid item lg={3} md={4} xs={6}>
@@ -208,45 +208,59 @@ export default function Market() {
                 alignItems="center"
                 justifyContent="space-between"
               >
-                <Grid item md={2.5} xs={12}>
-                  <Typography variant="h5">{company.company_name}</Typography>
+                <Grid item md={3} xs={12}>
+                  <Typography
+                    variant="h5"
+                    sx={{ fontWeight: "bold", m: { xs: 1, sm: 0 } }}
+                  >
+                    {company.company_name}
+                  </Typography>
+                  <Divider
+                    sx={{ visibility: { xs: "visible", sm: "hidden" } }}
+                  />
                 </Grid>
-                <Grid item md={2} xs={4}>
+
+                <Grid item md={2.8} xs={6.5}>
                   <Tooltip title={calculated_stock_value}>
-                    <Typography variant="h6">
-                      CSV:{" "}
+                    <Typography
+                      variant="h6"
+                      sx={{ m: { xs: 1, sm: 0 }, mb: 0 }}
+                    >
+                      {calculated}:{" "}
                       {Number(company.calculated_value_per_share).toFixed(2)} kr
                     </Typography>
                   </Tooltip>
                 </Grid>
-                <Grid item md={2} xs={4}>
+
+                <Grid item md={2.2} xs={5.5}>
                   <Tooltip title={live_stock_value}>
-                    <Typography variant="h6">
-                      LIVE: {Number(company.currentSharePrice).toFixed(2)} kr
+                    <Typography
+                      variant="h6"
+                      sx={{
+                        m: { xs: 1, sm: 0 },
+                        mb: 0,
+                        textAlign: { xs: "center", sm: "left" },
+                      }}
+                    >
+                      Live: {Number(company.currentSharePrice).toFixed(2)} kr
                     </Typography>
                   </Tooltip>
                 </Grid>
-                <Grid item md={2} xs={4}>
+
+                <Grid item md={2} xs={12}>
                   <Tooltip title={difference}>
-                    <div>
+                    <Box
+                      sx={{ textAlign: { xs: "center", sm: "left" }, pt: 0 }}
+                    >
                       {calculateDifference(
                         company.calculated_value_per_share,
                         company.currentSharePrice
                       )}
-                    </div>
+                    </Box>
                   </Tooltip>
                 </Grid>
-                <Grid item md={2.2} xs={6}>
-                  <Button
-                    variant="contained"
-                    fullWidth
-                    disabled
-                    endIcon={<VisibilityIcon />}
-                  >
-                    {watchlist}
-                  </Button>
-                </Grid>
-                <Grid item md={1.3} xs={6}>
+
+                <Grid item md={2} xs={12}>
                   <Button
                     color="success"
                     variant="contained"

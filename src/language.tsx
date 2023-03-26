@@ -17,6 +17,7 @@ export type LanguageTextInfo = {
   //MARKED
   calculated_stock_value: string;
   live_stock_value: string;
+  calculated: string;
   explore_company: string;
   difference: string;
   watchlist: string;
@@ -107,6 +108,7 @@ export const languageText = {
     //MARKED
     calculated_stock_value: "Kalkulert akjseverdi",
     live_stock_value: "Sanntids aksjekurs",
+    calculated: "Kalkulert",
     explore_company: "Utforsk",
     difference: "Differanse",
     watchlist: "Følg selskap",
@@ -196,6 +198,7 @@ export const languageText = {
     //MARKED
     calculated_stock_value: "Calculated stock value",
     live_stock_value: "Live stock value",
+    calculated: "Calculated",
     explore_company: "Explore",
     difference: "Difference",
     watchlist: "Add to watchlist",

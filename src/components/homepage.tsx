@@ -34,7 +34,7 @@ export default function Home() {
         <Container maxWidth="lg">
           <Grid
             container
-            sx={{ paddingTop: { xs: 10, sm: 12, md: 15, lg: 18 } }}
+            sx={{ paddingTop: { xs: 8, sm: 12, md: 15, lg: 18 } }}
           >
             <Grid item md={7} xs={12}>
               <Grid container>

@@ -18,6 +18,8 @@ import {
   ListItemButton,
   Icon,
   Hidden,
+  ListItemIcon,
+  Divider,
 } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import LanguageIcon from "@mui/icons-material/Language";
@@ -36,6 +38,7 @@ const NavBar = () => {
   const {
     change_language,
     property,
+    home,
     marked,
     portfolio,
     log_in,
@@ -61,6 +64,9 @@ const NavBar = () => {
 
   const menuItems = (
     <List>
+      <ListItemButton key={home} href={"#/"}>
+        <ListItemText primary={home} />
+      </ListItemButton>
       <ListItemButton key={marked} href={"#/market"}>
         <ListItemText primary={marked} />
       </ListItemButton>
@@ -70,11 +76,15 @@ const NavBar = () => {
       <ListItemButton key={about} href={"https://www.finco.no/"}>
         <ListItemText primary={about} />
       </ListItemButton>
+      <Divider />
       <ListItemButton
         key={log_in}
         href={user ? "#/users/" + user.user_id : "#/log_in"}
       >
         <ListItemText primary={user ? profile : log_in} />
+        <ListItemIcon>
+          {user ? <AccountCircleIcon /> : <LoginIcon />}
+        </ListItemIcon>
       </ListItemButton>
       {user.admin && (
         <ListItemButton key={admin} href="#/adminpage">
@@ -84,6 +94,9 @@ const NavBar = () => {
 
       <ListItemButton key={change_language} onClick={() => updateLanguage()}>
         <ListItemText primary={change_language} />
+        <ListItemIcon>
+          <LanguageIcon />
+        </ListItemIcon>
       </ListItemButton>
     </List>
   );

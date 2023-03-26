@@ -1,6 +1,6 @@
-import { createTheme, Theme } from "@mui/material/styles";
+import { createTheme, responsiveFontSizes } from "@mui/material/styles";
 
-export const MidlertidigTheme = createTheme({
+export let MidlertidigTheme = createTheme({
   palette: {
     //@ts-ignore
     mode: "light",
@@ -19,10 +19,4 @@ export const MidlertidigTheme = createTheme({
   },
 });
 
-//@ts-ignore
-// export const useStyles = makeStyles((MidlertidigTheme) => ({
-//   container: {
-//     // backgroundColor: '#faa7a7',
-//     backgroundImage: "linear-gradient(to bottom right, lightblue, lightgreen)",
-//   }
-// }));
+MidlertidigTheme = responsiveFontSizes(MidlertidigTheme);

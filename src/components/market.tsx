@@ -208,7 +208,7 @@ export default function Market() {
                 alignItems="center"
                 justifyContent="space-between"
               >
-                <Grid item md={2.5} xs={12}>
+                <Grid item md={3} xs={12}>
                   <Typography
                     variant="h5"
                     sx={{ fontWeight: "bold", m: { xs: 1, sm: 0 } }}
@@ -220,7 +220,7 @@ export default function Market() {
                   />
                 </Grid>
 
-                <Grid item md={2} xs={6.5}>
+                <Grid item md={2.8} xs={6.5}>
                   <Tooltip title={calculated_stock_value}>
                     <Typography
                       variant="h6"
@@ -232,7 +232,7 @@ export default function Market() {
                   </Tooltip>
                 </Grid>
 
-                <Grid item md={2} xs={5.5}>
+                <Grid item md={2.2} xs={5.5}>
                   <Tooltip title={live_stock_value}>
                     <Typography
                       variant="h6"

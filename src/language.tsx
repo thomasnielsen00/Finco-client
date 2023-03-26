@@ -25,6 +25,10 @@ export type LanguageTextInfo = {
   search: string;
   sort_by: string;
   no_sort: string;
+  key_figures: string;
+  buy_stock: string;
+  calculated_return: string;
+  buy: string;
   //PORTFOLIO
   show_details: string;
   //REGISTER
@@ -116,6 +120,10 @@ export const languageText = {
     search: "Søk her",
     sort_by: "Sorter etter",
     no_sort: "Ingen sortering",
+    key_figures: "Nøkkeltall",
+    buy_stock: "Kjøp akjse",
+    calculated_return: "Kalkulert avkastning",
+    buy: "Kjøp",
     //PORTFOLIO
     show_details: "Vis detaljer",
     //REGISTER
@@ -197,16 +205,19 @@ export const languageText = {
       "Welcome to FINCO-investement, dont let the inflation eat your savings. Browse our calculations and make safe trades!",
     //MARKED
     calculated_stock_value: "Calculated stock value",
-    live_stock_value: "Live stock value",
+    live_stock_value: "Current stock value",
     calculated: "Calculated",
     explore_company: "Explore",
     difference: "Difference",
     watchlist: "Add to watchlist",
     calculate: "See calculations",
     search: "Search",
-    //Burde det stå "Sort descending by"?
+    key_figures: "Key figures",
+    buy_stock: "Buy stock",
     sort_by: "Sort by",
     no_sort: "No sorting",
+    calculated_return: "Calculated return",
+    buy: "Buy",
     //PORTFOLIO
     show_details: "Show details",
     //REGISTER

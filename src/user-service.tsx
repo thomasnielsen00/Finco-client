@@ -1,7 +1,7 @@
 import axios from "axios";
 
-// axios.defaults.baseURL = "https://vercel-express-ebon-six.vercel.app/api";
-axios.defaults.baseURL = "http://localhost:3306/api";
+axios.defaults.baseURL = "https://vercel-express-ebon-six.vercel.app/api";
+// axios.defaults.baseURL = "http://localhost:3306/api";
 
 export type User = {
   user_id: number;

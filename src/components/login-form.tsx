@@ -76,7 +76,7 @@ export default function LogIn() {
   return (
     <ThemeProvider theme={MidlertidigTheme}>
       <CssBaseline />
-      <Container maxWidth="xs" sx={{ mt: 14 }}>
+      <Container maxWidth="xs" sx={{ mt: { xs: 5, sm: 14 } }}>
         <Collapse in={openAlert}>
           <Alert
             severity="error"

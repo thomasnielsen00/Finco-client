@@ -4,6 +4,7 @@ import {
   Card,
   CardContent,
   CardHeader,
+  Container,
   Typography,
 } from "@mui/material";
 import { LanguageContext } from "../context";
@@ -24,15 +25,8 @@ export function LogInNeeded() {
   return (
     <>
       <ThemeProvider theme={MidlertidigTheme}>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            height: "60vh",
-          }}
-        >
-          <Card style={{ width: "40%", textAlign: "center" }}>
+        <Container maxWidth="sm">
+          <Card sx={{ textAlign: "center", mt: { xs: 8, sm: 20 } }}>
             <CardHeader title={log_in_needed_text} sx={{ mt: 2 }} />
             <CardContent>
               <Button
@@ -63,7 +57,7 @@ export function LogInNeeded() {
               <Typography>{to_access_portfolio}</Typography>
             </CardContent>
           </Card>
-        </div>
+        </Container>
       </ThemeProvider>
     </>
   );

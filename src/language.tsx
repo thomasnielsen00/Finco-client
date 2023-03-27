@@ -68,6 +68,7 @@ export type LanguageTextInfo = {
   prefered_industries_inputLabel: string;
   button_save: string;
   button_saved: string;
+  sign_out: string; 
   //PORTFOLIODETAILS
   company_name: string;
   total_price: string;
@@ -164,6 +165,7 @@ export const languageText = {
     prefered_industries_inputLabel: "Foretrukne bransjer",
     button_save: "Lagre endringer",
     button_saved: "Lagret",
+    sign_out: "Logg ut",
     //PORTFOLIODETAILS
     company_name: "Selskap",
     total_price: "Totalbeløp",
@@ -258,6 +260,7 @@ export const languageText = {
     prefered_industries_inputLabel: "Prefered industries",
     button_save: "Save changes",
     button_saved: "Saved",
+    sign_out: "Sign out",
     //PORTFOLIODETAILS
     company_name: "Company",
     total_price: "Total price",

@@ -70,7 +70,10 @@ const NavBar = () => {
       <ListItemButton key={marked} href={"#/market"}>
         <ListItemText primary={marked} />
       </ListItemButton>
-      <ListItemButton key={portfolio} href={"#/portifolio/" + user.user_id}>
+      <ListItemButton
+        key={portfolio}
+        href={user ? "/#/portfolio/" + user.user_id : "/#/log_in_needed"}
+      >
         <ListItemText primary={portfolio} />
       </ListItemButton>
       <ListItemButton key={about} href={"https://www.finco.no/"}>

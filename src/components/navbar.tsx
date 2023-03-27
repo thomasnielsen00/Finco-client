@@ -70,13 +70,21 @@ const NavBar = () => {
       <ListItemButton key={marked} href={"#/market"}>
         <ListItemText primary={marked} />
       </ListItemButton>
-      <ListItemButton key={portfolio} href={"#/portifolio"}>
+      <ListItemButton
+        key={portfolio}
+        href={user ? "/#/portfolio/" + user.user_id : "/#/log_in_needed"}
+      >
         <ListItemText primary={portfolio} />
       </ListItemButton>
       <ListItemButton key={about} href={"https://www.finco.no/"}>
         <ListItemText primary={about} />
       </ListItemButton>
       <Divider />
+      {user.admin && (
+        <ListItemButton key={admin} href="#/adminpage">
+          <ListItemText primary={admin} />
+        </ListItemButton>
+      )}
       <ListItemButton
         key={log_in}
         href={user ? "#/users/" + user.user_id : "#/log_in"}
@@ -86,12 +94,6 @@ const NavBar = () => {
           {user ? <AccountCircleIcon /> : <LoginIcon />}
         </ListItemIcon>
       </ListItemButton>
-      {user.admin && (
-        <ListItemButton key={admin} href="#/adminpage">
-          <ListItemText primary={admin} />
-        </ListItemButton>
-      )}
-
       <ListItemButton key={change_language} onClick={() => updateLanguage()}>
         <ListItemText primary={change_language} />
         <ListItemIcon>
@@ -169,6 +171,17 @@ const NavBar = () => {
                 </Button>
               </Box>
               <Box sx={{ display: { xs: "none", md: "flex" } }}>
+                {user.admin && (
+                  <Button
+                    color="inherit"
+                    key={admin}
+                    component="a"
+                    href="#/adminpage"
+                    sx={{ ml: 2, mr: 2 }}
+                  >
+                    {admin}
+                  </Button>
+                )}
                 <Button
                   size="large"
                   color="inherit"
@@ -182,17 +195,6 @@ const NavBar = () => {
                 </Button>
               </Box>
               <Box sx={{ display: { xs: "none", md: "flex" } }}>
-                {user.admin && (
-                  <Button
-                    color="inherit"
-                    key={admin}
-                    component="a"
-                    href="#/adminpage"
-                    sx={{ ml: 2, mr: 2 }}
-                  >
-                    {admin}
-                  </Button>
-                )}
                 <Button
                   size="large"
                   color="inherit"

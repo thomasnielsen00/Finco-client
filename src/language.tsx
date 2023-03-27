@@ -68,6 +68,7 @@ export type LanguageTextInfo = {
   prefered_industries_inputLabel: string;
   button_save: string;
   button_saved: string;
+  sign_out: string; 
   //PORTFOLIODETAILS
   company_name: string;
   total_price: string;
@@ -105,10 +106,10 @@ export const languageText = {
     mail: "E-post",
     password: "Passord",
     //HOME
-    get_started: "Kom i gang!",
+    get_started: "Kom i gang",
     header: "Vanskelig å komme i gang med aksjer?",
     welcome_text:
-      "Velkommen til FINCO-inverstering, ikke la inflasjonen spise opp dine sparepenger. Sjekk ut våre beregninger og gjør akjseinvesteringer på en trygg måte!",
+      "Velkommen til FINCO og vår investeringsapplikasjon. Vi tar oss av analysen, slik at du kan lene deg tilbake. Sjekk ut våre beregninger og gjør investeringer på en trygg måte!",
     //MARKED
     calculated_stock_value: "Kalkulert akjseverdi",
     live_stock_value: "Sanntids aksjekurs",
@@ -164,6 +165,7 @@ export const languageText = {
     prefered_industries_inputLabel: "Foretrukne bransjer",
     button_save: "Lagre endringer",
     button_saved: "Lagret",
+    sign_out: "Logg ut",
     //PORTFOLIODETAILS
     company_name: "Selskap",
     total_price: "Totalbeløp",
@@ -199,10 +201,10 @@ export const languageText = {
     mail: "E-mail adress",
     password: "Password",
     //HOME
-    get_started: "Get started!",
+    get_started: "Get started",
     header: "Struggling to get started with stocks?",
     welcome_text:
-      "Welcome to FINCO-investement, dont let the inflation eat your savings. Browse our calculations and make safe trades!",
+      "Welcome to FINCO-investement. We provide you with a new way to handle your savings. Browse our calculations and make safe investments!",
     //MARKED
     calculated_stock_value: "Calculated stock value",
     live_stock_value: "Current stock value",
@@ -258,6 +260,7 @@ export const languageText = {
     prefered_industries_inputLabel: "Prefered industries",
     button_save: "Save changes",
     button_saved: "Saved",
+    sign_out: "Sign out",
     //PORTFOLIODETAILS
     company_name: "Company",
     total_price: "Total price",

@@ -130,8 +130,6 @@ export function UserDetails() {
       timer.current = window.setTimeout(() => {
         setSavedChange(true);
         setLoading(false);
-        //.preventDefault is a common pattern in React form handling to prevent the default
-        //behavior of the form submission, which typically involves the page being refreshed or reloaded.
         event.preventDefault();
 
         userService.updateUser(userData).catch((error) => console.log(error));

@@ -1,17 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
-// import { NavLink } from 'react-router-dom';
-import companyService, { Company } from "../company-service";
 import userService, { Investment } from "../user-service";
 import {
   Button,
   Typography,
   CssBaseline,
-  Container,
-  Grid,
   Card,
-  CardContent,
-  CardActions,
-  Alert,
   IconButton,
   Collapse,
   Box,
@@ -28,15 +21,12 @@ import {
   DialogContentText,
   DialogTitle,
 } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
 import { ThemeProvider } from "@mui/material/styles";
 import { MidlertidigTheme } from "../styles";
 import { LanguageContext, UserContext } from "../context";
 import { NavLink, useParams } from "react-router-dom";
-import { LanguageTextInfo } from "../language";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-
 
 export function Portfolio() {
   //Language-select related
@@ -219,17 +209,17 @@ export function Portfolio() {
                             )}
                           </TableCell>
                           <TableCell>
-                            {Number(investment.amount).toFixed(1)}
+                            {Number(investment.amount).toFixed(3)}
                           </TableCell>
                           <TableCell align="right">
-                            {Number(investment.buy_price).toFixed(2)}
+                            {Number(investment.buy_price).toFixed(2) + " ,-"}
                           </TableCell>
-
-                          {/* <TableCell align="right">Yield: To be implemented if necesary</TableCell> */}
                           <TableCell align="right">
                             {Math.round(
                               investment.amount * investment.buy_price * 100
-                            ) / 100}
+                            ) /
+                              100 +
+                              " ,-"}
                           </TableCell>
 
                           <TableCell align="right">

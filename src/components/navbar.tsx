@@ -1,6 +1,5 @@
 import React, { useState, useContext } from "react";
 import { NavLink } from "react-router-dom";
-// import companyService, { Company } from './company-service';
 import {
   Button,
   Typography,
@@ -29,8 +28,6 @@ import { MidlertidigTheme } from "../styles";
 import { languageText, LanguageTextInfo } from "../language";
 import { LanguageContext, UserContext } from "../context";
 import { Menu as MenuIcon } from "@mui/icons-material";
-import { alignProperty } from "@mui/material/styles/cssUtils";
-import userService, { User } from "../user-service";
 
 const NavBar = () => {
   //@ts-ignore

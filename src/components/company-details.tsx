@@ -60,7 +60,7 @@ export default function CompanyDetails() {
         setOpenAlert(true);
         setErrorMessage(error.message);
       });
-  }, []);
+  }, [company_id]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     let event_sum = Number(event.currentTarget.value);

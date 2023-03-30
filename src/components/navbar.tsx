@@ -1,22 +1,17 @@
-import React, { useState, useContext } from "react";
+import { useState, useContext } from "react";
 import { NavLink } from "react-router-dom";
 import {
   Button,
-  Typography,
   AppBar,
   Toolbar,
   CssBaseline,
   Box,
   Container,
-  Grid,
   IconButton,
   Drawer,
   List,
-  ListItem,
   ListItemText,
   ListItemButton,
-  Icon,
-  Hidden,
   ListItemIcon,
   Divider,
 } from "@mui/material";
@@ -25,7 +20,7 @@ import LanguageIcon from "@mui/icons-material/Language";
 import LoginIcon from "@mui/icons-material/Login";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { MidlertidigTheme } from "../styles";
-import { languageText, LanguageTextInfo } from "../language";
+import { languageText } from "../language";
 import { LanguageContext, UserContext } from "../context";
 import { Menu as MenuIcon } from "@mui/icons-material";
 
@@ -44,7 +39,7 @@ const NavBar = () => {
     admin,
   } = language;
   //@ts-ignore
-  const { user, setUser } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   const [open, setOpen] = useState(false);
 
   const handleDrawerToggle = () => {
@@ -52,7 +47,7 @@ const NavBar = () => {
   };
 
   function updateLanguage() {
-    if (property == "norwegian") {
+    if (property === "norwegian") {
       setLanguage(languageText.english);
     } else {
       setLanguage(languageText.norwegian);

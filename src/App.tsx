@@ -1,12 +1,6 @@
 import React, { useState } from "react";
 import { LanguageContext, UserContext } from "./context";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  HashRouter,
-  BrowserRouter,
-} from "react-router-dom";
+import { Route, Routes, HashRouter } from "react-router-dom";
 import NavBar from "./components/navbar";
 import LogIn from "./components/login-form";
 import Register from "./components/register-user";

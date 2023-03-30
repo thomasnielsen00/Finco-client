@@ -9,11 +9,9 @@ import {
   Grid,
   Card,
   CardContent,
-  CardActions,
   Alert,
   IconButton,
   Collapse,
-  Stack,
   TextField,
   InputAdornment,
   Box,
@@ -28,7 +26,6 @@ import userService from "../user-service";
 import { useNavigate } from "react-router-dom";
 
 export default function CompanyDetails() {
-  //denne må ses over
   // @ts-ignore
   const { company_id } = useParams();
   //@ts-ignore
@@ -48,7 +45,7 @@ export default function CompanyDetails() {
   const [company, setCompany] = useState<Company>();
   const [openAlert, setOpenAlert] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
-  const [sum, setSum] = useState<number>(0);
+  const [sum, setSum] = useState<number>();
   const [roi, setRoi] = useState<number>(0);
   const navigate = useNavigate();
 
@@ -62,7 +59,6 @@ export default function CompanyDetails() {
       .catch((error) => {
         setOpenAlert(true);
         setErrorMessage(error.message);
-        // av en eller annen grunn tar siden mye lenger tid å laste inn med disse useState
       });
   }, []);
 

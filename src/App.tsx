@@ -20,6 +20,7 @@ import CompanyCalculations from "./components/company-calculations";
 import AdminPage from "./components/adminpage";
 import { LogInNeeded } from "./components/log-in-needed";
 import { UserDetails } from "./components/user-details";
+import Disclaimer from "./components/disclaimer";
 
 export default function App() {
   const [user, setUser] = useState<User | boolean>(false);
@@ -35,6 +36,7 @@ export default function App() {
         {/* @ts-ignore */}
         <UserContext.Provider value={{ user, setUser }}>
           <NavBar />
+          <Disclaimer />
           <Routes>
             {/* @ts-ignore */}
             <Route exact path="/" element={<Home />} />

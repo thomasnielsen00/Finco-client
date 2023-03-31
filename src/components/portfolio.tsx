@@ -1,17 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
-// import { NavLink } from 'react-router-dom';
-import companyService, { Company } from "../company-service";
 import userService, { Investment } from "../user-service";
 import {
   Button,
   Typography,
   CssBaseline,
-  Container,
-  Grid,
   Card,
-  CardContent,
-  CardActions,
-  Alert,
   IconButton,
   Collapse,
   Box,
@@ -28,15 +21,12 @@ import {
   DialogContentText,
   DialogTitle,
 } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
 import { ThemeProvider } from "@mui/material/styles";
 import { MidlertidigTheme } from "../styles";
 import { LanguageContext, UserContext } from "../context";
-import { NavLink, useParams } from "react-router-dom";
-import { LanguageTextInfo } from "../language";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-
 
 export function Portfolio() {
   //Language-select related
@@ -71,8 +61,13 @@ export function Portfolio() {
   const [refresh, setRefresh] = useState<boolean>(false);
   //@ts-ignore
   const { user_id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
+    if (!user) {
+      navigate("/log_in_needed");
+    }
+
     //@ts-ignore
     const current_id = parseInt(user_id, 10); //base 10
 
@@ -100,6 +95,30 @@ export function Portfolio() {
       {
         company_name: "Airthings",
         currentSharePrice: 34,
+      },
+      {
+        company_name: "ABG Sundal",
+        currentSharePrice: 5.99,
+      },
+      {
+        company_name: "AEGA",
+        currentSharePrice: 0.87,
+      },
+      {
+        company_name: "Aqilyx (Group)",
+        currentSharePrice: 33.17,
+      },
+      {
+        company_name: "Aker",
+        currentSharePrice: 716.54,
+      },
+      {
+        company_name: "Kongsberg",
+        currentSharePrice: 402.1,
+      },
+      {
+        company_name: "Tomra",
+        currentSharePrice: 190.02,
       },
     ];
 
@@ -135,9 +154,12 @@ export function Portfolio() {
     const returnAmount = (returnPercentage / 100) * sum;
 
     const [openSellConfirm, setOpenSellConfirm] = React.useState(false);
+    //@ts-ignore
+    const [investmentDialog, setInvestmentDialog] = useState<Investment>({});
 
-    const handleOpenSellConfirm = () => {
+    const handleOpenSellConfirm = (investment: Investment) => {
       setOpenSellConfirm(true);
+      setInvestmentDialog(investment);
     };
 
     const handleCloseSellConfirm = () => {
@@ -219,26 +241,23 @@ export function Portfolio() {
                             )}
                           </TableCell>
                           <TableCell>
-                            {Number(investment.amount).toFixed(1)}
+                            {Number(investment.amount).toFixed(3)}
                           </TableCell>
                           <TableCell align="right">
-                            {Number(investment.buy_price).toFixed(2)}
+                            {Number(investment.buy_price).toFixed(2) + " ,-"}
                           </TableCell>
-
-                          {/* <TableCell align="right">Yield: To be implemented if necesary</TableCell> */}
                           <TableCell align="right">
                             {Math.round(
                               investment.amount * investment.buy_price * 100
-                            ) / 100}
+                            ) /
+                              100 +
+                              " ,-"}
                           </TableCell>
 
                           <TableCell align="right">
                             <Button
                               variant="contained"
-                              onClick={() =>
-                                //@ts-ignore
-                                handleOpenSellConfirm(investment.investment_id)
-                              }
+                              onClick={() => handleOpenSellConfirm(investment)}
                               color="warning"
                             >
                               {sell_button}
@@ -246,34 +265,30 @@ export function Portfolio() {
                             <Dialog
                               open={openSellConfirm}
                               onClose={handleCloseSellConfirm}
-                              aria-labelledby="alert-dialog-title"
-                              aria-describedby="alert-dialog-description"
                             >
-                              <DialogTitle id="alert-dialog-title">
+                              <DialogTitle>
                                 {sell_confirmation_header}
                               </DialogTitle>
                               <DialogContent>
-                                <DialogContentText id="alert-dialog-description">
+                                <DialogContentText>
                                   {sell_confirmation_body_first_part}{" "}
-                                  {Number(row.amount).toFixed(1)}{" "}
+                                  {Number(investmentDialog.amount).toFixed(2)}{" "}
                                   {sell_confirmation_body_second_part}{" "}
-                                  {row.company_name}{" "}
+                                  {investmentDialog.company_name}{" "}
                                   {sell_confirmation_body_third_part}{" "}
                                   {Number(
-                                    investment.amount *
-                                      investment.buy_price *
-                                      ((currentValue -
-                                        investment.amount *
-                                          investment.buy_price) /
-                                        (investment.amount *
-                                          investment.buy_price))
+                                    currentPrice * investmentDialog.amount -
+                                      investmentDialog.buy_price *
+                                        investmentDialog.amount
                                   ).toFixed(2)}{" "}
                                   {sell_confirmation_body_fourth_part}
                                 </DialogContentText>
                               </DialogContent>
                               <DialogActions>
                                 <Button
-                                  onClick={() => handleCloseSellConfirm()}
+                                  onClick={() => {
+                                    handleCloseSellConfirm();
+                                  }}
                                 >
                                   {sell_confirmation_cancel}
                                 </Button>
@@ -294,8 +309,8 @@ export function Portfolio() {
 
                                     userService.updateSoldUserInvestment(
                                       formattedDate,
-                                      row.user_id,
-                                      row.investment_id
+                                      user.user_id,
+                                      investmentDialog.investment_id
                                     );
 
                                     setRefresh(true);
@@ -323,7 +338,6 @@ export function Portfolio() {
     <>
       <ThemeProvider theme={MidlertidigTheme}>
         <CssBaseline />
-
         <Card
           style={{
             width: "90%",

@@ -1,4 +1,14 @@
-import React, { useState, useEffect, useContext } from "react";
+import {
+  Chart,
+  LineController,
+  LineElement,
+  PointElement,
+  LinearScale,
+  CategoryScale,
+  Title,
+} from "chart.js";
+
+import React, { useState, useEffect, useContext, useRef } from "react";
 import { useParams } from "react-router-dom";
 import companyService, { Company } from "../company-service";
 import {
@@ -25,6 +35,15 @@ import { LanguageContext, UserContext } from "../context";
 import userService from "../user-service";
 import { useNavigate } from "react-router-dom";
 
+Chart.register(
+  LineController,
+  LineElement,
+  PointElement,
+  LinearScale,
+  CategoryScale,
+  Title
+);
+
 export default function CompanyDetails() {
   // @ts-ignore
   const { company_id } = useParams();
@@ -40,6 +59,7 @@ export default function CompanyDetails() {
     buy_stock,
     calculated_return,
     buy,
+    estimated5year,
   } = language;
 
   const [company, setCompany] = useState<Company>();
@@ -47,6 +67,7 @@ export default function CompanyDetails() {
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [sum, setSum] = useState<number>();
   const [roi, setRoi] = useState<number>(0);
+  const [companyIndex, setCompanyIndex] = useState<number>(-1);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -109,12 +130,104 @@ export default function CompanyDetails() {
     cal_val: number | undefined,
     cur_stc: number | undefined
   ) {
+    ("");
     if (cal_val && cur_stc) {
       return (((cal_val - cur_stc) / cur_stc) * 100).toFixed(2);
     } else {
       return NaN;
     }
   }
+
+  // Kode relatert til bruk av Chart.js
+  const ABGSundal = [5.54, 6.12, 8.19, 13.55, 17.16];
+  const AEGA = [1.0, 1.23, 0.93, 0.55, 0.0];
+
+  const companydata = [
+    [5.54, 6.12, 8.19, 13.55, 17.16],
+    [1.0, 1.23, 0.93, 0.55, 0.0],
+    [30.55, 25.33, 29.3, 15.64, 0.0],
+    [3.93, 2.55, 6.39, 2.55, 0.0],
+    [723, 552.33, 431.29, 201.21, 0.01],
+    [66.1, 78.33, 70.36, 70.64, 61.48],
+    [407.6, 328.33, 265.42, 104.31, 0.19],
+    [183.08, 144.23, 120.44, 75.3, 0.06],
+  ];
+
+  const chartRef = useRef(null);
+  const chartInstance = useRef<Chart | undefined>();
+
+  const InitChart = (company_id: number | undefined) => {
+    //@ts-ignore
+    const ctx = chartRef.current.getContext("2d");
+
+    if (chartInstance.current) {
+      chartInstance.current.destroy();
+    }
+
+    chartInstance.current = new Chart(ctx, {
+      type: "line",
+      data: {
+        labels: Array.from({ length: ABGSundal.length }, (_, i) => i + 1),
+        datasets: [
+          {
+            label: "ABGSundal",
+            data:
+              company_id && companydata[companyIndex]
+                ? companydata[companyIndex]
+                : [],
+            borderColor: "rgba(6,41,61, 1)",
+            backgroundColor: "rgba(75, 192, 192, 0)",
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          title: {
+            display: true,
+            text: "Estimert verdi de neste 5 år",
+            // Her kan man legge inn {estimated5year} for å kunne oversette, falt bak i backlogen min, men det ligger i language filen
+          },
+        },
+        scales: {
+          x: {
+            type: "category",
+            title: {
+              display: true,
+              text: "Index",
+            },
+          },
+          y: {
+            type: "linear",
+            title: {
+              display: true,
+              text: "NOK",
+            },
+          },
+        },
+      },
+    });
+  };
+  useEffect(() => {
+    companyService.getAll().then((companies) => {
+      const index = companies.findIndex(
+        (company) => company.company_id === Number(company_id)
+      );
+      setCompanyIndex(index);
+    });
+  }, [company_id]);
+
+  useEffect(() => {
+    //@ts-ignore
+    InitChart(company_id);
+
+    return () => {
+      if (chartInstance.current) {
+        chartInstance.current.destroy();
+      }
+    };
+  }, [company_id, companyIndex]);
 
   return (
     <>
@@ -190,14 +303,11 @@ export default function CompanyDetails() {
 
                   <Grid item xs={12} md={8}>
                     <Card sx={{ m: 1, maxHeight: 267.22 }}>
-                      {/* 135.01 x 2 + 16, 135 er høyde på de andre kortene til venstre, foreløpig*/}
                       <CardContent>
-                        <CardMedia
-                          sx={{ aspectRatio: "16/9" }}
-                          component="img"
-                          src="/images/test-chart.png"
-                          alt="Chart"
-                        ></CardMedia>
+                        <canvas
+                          ref={chartRef}
+                          style={{ width: "100%", height: "267.22px" }}
+                        ></canvas>
                       </CardContent>
                     </Card>
                   </Grid>

@@ -29,6 +29,7 @@ export type LanguageTextInfo = {
   buy_stock: string;
   calculated_return: string;
   buy: string;
+  estimated5years: string;
   //PORTFOLIO
   show_details: string;
   //REGISTER
@@ -68,7 +69,7 @@ export type LanguageTextInfo = {
   prefered_industries_inputLabel: string;
   button_save: string;
   button_saved: string;
-  sign_out: string; 
+  sign_out: string;
   //PORTFOLIODETAILS
   company_name: string;
   total_price: string;
@@ -125,6 +126,7 @@ export const languageText = {
     buy_stock: "Kjøp akjse",
     calculated_return: "Kalkulert avkastning",
     buy: "Kjøp",
+    estimated5years: "Estimert verdi de neste 5 år",
     //PORTFOLIO
     show_details: "Vis detaljer",
     //REGISTER
@@ -220,6 +222,7 @@ export const languageText = {
     no_sort: "No sorting",
     calculated_return: "Calculated return",
     buy: "Buy",
+    estimated5years: "Estimated value the next 5 years",
     //PORTFOLIO
     show_details: "Show details",
     //REGISTER

@@ -59,7 +59,7 @@ export default function CompanyDetails() {
     buy_stock,
     calculated_return,
     buy,
-    estimated5year,
+    estimated5years,
   } = language;
 
   const [company, setCompany] = useState<Company>();
@@ -186,7 +186,7 @@ export default function CompanyDetails() {
         plugins: {
           title: {
             display: true,
-            text: "Estimert verdi de neste 5 år",
+            text: estimated5years,
             // Her kan man legge inn {estimated5year} for å kunne oversette, falt bak i backlogen min, men det ligger i language filen
           },
         },

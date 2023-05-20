@@ -63,6 +63,7 @@ export function Portfolio() {
   const { user_id } = useParams();
   const navigate = useNavigate();
 
+  // Fetches investment details if user is logged in
   useEffect(() => {
     if (!user) {
       navigate("/log_in_needed");
@@ -87,6 +88,8 @@ export function Portfolio() {
     const { row } = props;
     const [open, setOpen] = React.useState(false);
     const totalPrices: number[] = [];
+
+    // Predefined share price due to bad data foundation
     const currentSharePrice = [
       {
         company_name: "Europris",

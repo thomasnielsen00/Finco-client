@@ -23,6 +23,7 @@ export default function App() {
     languageText.norwegian
   );
 
+  // Different paths and the components they render
   return (
     <HashRouter>
       {/* @ts-ignore */}
@@ -34,7 +35,6 @@ export default function App() {
           <Routes>
             {/* @ts-ignore */}
             <Route exact path="/" element={<Home />} />
-            {/* Må kanskje være :user_id, men funker ikke ends mtp teststien i finco-components */}
             <Route path="/users/:user_id" element={<UserDetails />} />
             <Route path="/portfolio/:user_id" element={<Portfolio />} />
             {/* This component is rendered when a user tries to open a portfolio but is not logged in */}

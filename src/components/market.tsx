@@ -55,6 +55,7 @@ export default function Market() {
   const [searchValue, setSearchValue] = useState<string>("");
   const [sortValue, setSortValue] = useState("");
 
+  // Fetches all companies
   useEffect(() => {
     companyService
       .getAll()
@@ -88,6 +89,7 @@ export default function Market() {
     setSortValue(event.target.value);
   };
 
+  // Sortes list of companies by users selected sorting
   //@ts-ignore
   const sortedCompanies = [...companies].sort((a, b) => {
     if (sortValue === "CSV") {
@@ -103,6 +105,7 @@ export default function Market() {
     }
   });
 
+  // Search function, makes it possible to search when the list of companies is sorted
   const filterCompanies = sortedCompanies.filter((c) => {
     if (searchValue) {
       return c.company_name.toLowerCase().includes(searchValue.toLowerCase());
@@ -111,6 +114,7 @@ export default function Market() {
     }
   });
 
+  // Calculates difference between live and calculated stock, returns with color and trend arrow
   function calculateDifference(cal_val: number, cur_stc: number) {
     let diff = Number((((cal_val - cur_stc) / cur_stc) * 100).toFixed(2));
     if (diff > 10) {

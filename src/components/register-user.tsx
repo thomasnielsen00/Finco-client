@@ -22,7 +22,6 @@ import userService from "../user-service";
 import { useNavigate } from "react-router-dom";
 
 export default function Register() {
-  // context, må lage en type for brukere
   //@ts-ignore
   const { user, setUser } = useContext(UserContext);
   //@ts-ignore
@@ -55,6 +54,7 @@ export default function Register() {
   const [signUpFormValues, setSignUpFormValues] = useState(
     defaultSignUpFormValues
   );
+  // Error handling variables
   const [error, setError] = useState({
     full_name: false,
     mail: false,
@@ -64,6 +64,7 @@ export default function Register() {
 
   const navigate = useNavigate();
 
+  // handles change in form
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSignUpFormValues({
       ...signUpFormValues,
@@ -71,6 +72,7 @@ export default function Register() {
     });
   };
 
+  // Registers user if conditions is met
   //@ts-ignore
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -105,7 +107,6 @@ export default function Register() {
       .catch(() => console.log("Error in form detected"));
   };
 
-  // midlertidig type
   const formValidation = (signUpFormValues: any, setError: any) => {
     return new Promise<void>((resolve, reject) => {
       //pattern for testing if there is a letter both before and after the space (\s), both with upper and lowerCase

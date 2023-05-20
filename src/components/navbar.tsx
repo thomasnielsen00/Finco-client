@@ -46,6 +46,7 @@ const NavBar = () => {
     setOpen(!open);
   };
 
+  // Function to update language when button is clicked
   function updateLanguage() {
     if (property === "norwegian") {
       setLanguage(languageText.english);
@@ -54,6 +55,7 @@ const NavBar = () => {
     }
   }
 
+  // Items shown in burger menu, with conditions
   const menuItems = (
     <List>
       <ListItemButton key={home} href={"#/"}>

@@ -73,6 +73,7 @@ class CompanyService {
   //     .then((response) => response.data.id);
   // }
 
+  // Get all company calculations for admin page
   getCompanyCalculations(company_id: number) {
     return axios
       .get<companycalculations>("/companycalculations/" + company_id)

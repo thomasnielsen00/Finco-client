@@ -70,6 +70,7 @@ export default function CompanyDetails() {
   const [companyIndex, setCompanyIndex] = useState<number>(-1);
   const navigate = useNavigate();
 
+  // Fetches all companies
   useEffect(() => {
     companyService
       //@ts-ignore
@@ -83,6 +84,7 @@ export default function CompanyDetails() {
       });
   }, [company_id]);
 
+  // Function to handle and calculate return from given sum
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     let event_sum = Number(event.currentTarget.value);
     setSum(event_sum);
@@ -94,6 +96,7 @@ export default function CompanyDetails() {
     setRoi(Number(calculated_roi));
   };
 
+  // Function to save investment
   const handleBuy = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
@@ -126,6 +129,7 @@ export default function CompanyDetails() {
     }
   };
 
+  // Function to calculate difference between live and calculated stock
   function calculateDifference(
     cal_val: number | undefined,
     cur_stc: number | undefined
@@ -138,10 +142,11 @@ export default function CompanyDetails() {
     }
   }
 
-  // Kode relatert til bruk av Chart.js
+  // Related to Chart.js
   const ABGSundal = [5.54, 6.12, 8.19, 13.55, 17.16];
   const AEGA = [1.0, 1.23, 0.93, 0.55, 0.0];
 
+  // Predefined values for stock prediction due to bad data foundation
   const companydata = [
     [5.54, 6.12, 8.19, 13.55, 17.16],
     [1.0, 1.02, 1.09, 1.1, 1.13],
@@ -156,6 +161,7 @@ export default function CompanyDetails() {
   const chartRef = useRef(null);
   const chartInstance = useRef<Chart | undefined>();
 
+  // Function to create chart
   const InitChart = (company_id: number | undefined) => {
     //@ts-ignore
     const ctx = chartRef.current.getContext("2d");
@@ -187,7 +193,6 @@ export default function CompanyDetails() {
           title: {
             display: true,
             text: estimated5years,
-            // Her kan man legge inn {estimated5year} for å kunne oversette, falt bak i backlogen min, men det ligger i language filen
           },
         },
         scales: {

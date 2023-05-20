@@ -44,6 +44,8 @@ export default function LogIn() {
   const [logInFormValues, setLogInFormValues] = useState(defaultLogInFormInput);
 
   const navigate = useNavigate();
+
+  // Handles change in log in form
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -53,6 +55,7 @@ export default function LogIn() {
     });
   };
 
+  // Function to handle log in, return error if the user puts in wrong email or password
   //@ts-ignore
   const handleSubmit = (event) => {
     event.preventDefault();

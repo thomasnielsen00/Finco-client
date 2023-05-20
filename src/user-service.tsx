@@ -49,6 +49,7 @@ class UserService {
       .then((response) => response.data);
   }
 
+  // Signs in user if correct email and password
   signInUser(email: string, password: string) {
     return axios
       .get<User>(`/users/login/${email}/${password}`)
@@ -157,6 +158,7 @@ class UserService {
   //           PREFERED-INDUSTRY FOR USER
   //------------------------------------------------------------------------------------------------------------------
 
+  // Gets all prefered industries to given user
   getAllPreferedIndustries(user_id: number) {
     return axios
       .get<Industry[]>(`/users/${user_id}/industries`)
@@ -207,6 +209,7 @@ class UserService {
   //     .then((response) => response.data);
   // }
 
+  // Deletes given prefered industry with given user
   deleteUserIndustry(industry_id: number, user_id: number) {
     return axios
       .delete(`/users/${user_id}/industries/${industry_id}`)

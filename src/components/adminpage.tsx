@@ -57,6 +57,7 @@ export default function AdminPage() {
   const [sortValue, setSortValue] = useState("");
   const navigate = useNavigate();
 
+  // Fetch all calculations if user is admin
   useEffect(() => {
     if (user.admin) {
       companyService
@@ -80,7 +81,6 @@ export default function AdminPage() {
         .catch((error) => {
           setOpenAlert(true);
           setErrorMessage(error.message);
-          // av en eller annen grunn tar siden mye lenger tid å laste inn med disse useState
         });
     } else {
       navigate("#");
@@ -95,6 +95,7 @@ export default function AdminPage() {
     setSortValue(event.target.value);
   };
 
+  // Function to sort companies
   //@ts-ignore
   const sortedCompanies = [...companies].sort((a, b) => {
     if (sortValue == "CSV") {
@@ -110,6 +111,7 @@ export default function AdminPage() {
     }
   });
 
+  // search function, makes it possible to search in the sorted list as well
   const filterCompanies = sortedCompanies.filter((c) => {
     if (searchValue) {
       return c.company_name.toLowerCase().includes(searchValue.toLowerCase());
@@ -118,6 +120,7 @@ export default function AdminPage() {
     }
   });
 
+  // Function to calculate difference between live and calculated stock, returns text with color and trend arrow
   function calculateDifference(cal_val: number, cur_stc: number) {
     let diff = Number((((cal_val - cur_stc) / cur_stc) * 100).toFixed(2));
     if (diff > 10) {

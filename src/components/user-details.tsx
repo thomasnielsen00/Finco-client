@@ -22,21 +22,6 @@ import { MidlertidigTheme } from "../styles";
 import { useNavigate } from "react-router-dom";
 import { Container } from "@mui/system";
 
-// Skal vi ha med dette?:
-// const risk_willingness: Array<{ value: string; label: string }> = [
-//   {
-//     value: 'high',
-//     label: 'High',
-//   },
-//   {
-//     value: 'moderate',
-//     label: 'Moderate',
-//   },
-//   {
-//     value: 'low',
-//     label: 'Low',
-//   },
-// ];
 
 export function UserDetails() {
   //@ts-ignore
@@ -121,6 +106,7 @@ export function UserDetails() {
     setSavedChange(false);
   };
 
+  // Handles save button action
   const handleSubmit = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
@@ -143,6 +129,7 @@ export function UserDetails() {
     }
   };
 
+  // Function that logs out current user
   const handleSignOut = () => {
     if (user) {
       setUser(false);
@@ -180,8 +167,6 @@ export function UserDetails() {
         <Alert>{error}</Alert>;
       });
   }, [user_id]);
-
-  // const risk_option = ['Høy', 'Moderat', 'Lav'];
 
   return (
     <>
